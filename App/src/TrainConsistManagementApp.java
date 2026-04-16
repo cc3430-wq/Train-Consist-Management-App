@@ -3,6 +3,7 @@ import java.util.List;
 
 public class TrainConsistManagementApp {
 
+
         // Bogie class representing passenger bogies
         static class Bogie {
             String name;
@@ -22,7 +23,7 @@ public class TrainConsistManagementApp {
         public static void main(String[] args) {
             System.out.println("=== Train Consist Management App ===");
 
-            // Create a list of passenger bogies
+            // Original bogie list
             List<Bogie> bogies = new ArrayList<>();
             bogies.add(new Bogie("Sleeper", 72));
             bogies.add(new Bogie("AC Chair", 60));
@@ -32,11 +33,17 @@ public class TrainConsistManagementApp {
             System.out.println("\nOriginal Bogie List:");
             bogies.forEach(System.out::println);
 
-            // Sort bogies by capacity using Comparator
-            bogies.sort(Comparator.comparingInt(b -> b.capacity));
+            // Filter bogies with capacity > 60 using Stream API
+            List<Bogie> highCapacityBogies = bogies.stream()
+                    .filter(b -> b.capacity > 60)
+                    .collect(Collectors.toList());
 
-            // Display sorted list
-            System.out.println("\nSorted Bogie List by Capacity:");
+            // Display filtered bogies
+            System.out.println("\nFiltered Bogie List (Capacity > 60):");
+            highCapacityBogies.forEach(System.out::println);
+
+            // Verify original list remains unchanged
+            System.out.println("\nOriginal Bogie List Remains Unchanged:");
             bogies.forEach(System.out::println);
         }
     }
