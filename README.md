@@ -1,14 +1,10 @@
 # Train-Consist-Management-App
 
-Drawback of UC1 Approach
-In UC1, the train consist is initialized but contains no bogies.
-There is no way yet to add, remove, or inspect bogies dynamically.
-To simulate a real railway system, the application must support operations such as:
-Adding passenger bogies
-Removing bogies
-
-
-Checking whether a bogie exists
-
-
-This leads us to use ArrayList operations.
+DDrawback of UC2 Approach
+In UC2, bogies are stored in a List. However, a List allows duplicate values, which is dangerous in a railway system.
+For example, two bogies could accidentally be registered with the same ID:
+BG101, BG101
+This violates business rules and can cause inconsistent train formation.
+To enforce uniqueness, we introduce the Set data structure.
+Goal
+Ensure no duplicate bogie IDs are added to the train.
