@@ -1,10 +1,16 @@
 # Train-Consist-Management-App
 
-DDrawback of UC2 Approach
-In UC2, bogies are stored in a List. However, a List allows duplicate values, which is dangerous in a railway system.
-For example, two bogies could accidentally be registered with the same ID:
-BG101, BG101
-This violates business rules and can cause inconsistent train formation.
-To enforce uniqueness, we introduce the Set data structure.
-Goal
-Ensure no duplicate bogie IDs are added to the train.
+Drawback of UC4 Approach
+In UC4, we maintained order using LinkedList.
+However, train yards often perform last-minute attachments and emergency removals, where the last attached bogie must be removed first.
+Problems with plain list logic:
+No enforced removal discipline.
+
+
+Students don’t see real operational constraints.
+
+
+LIFO behavior is not modeled.
+
+
+To simulate real-world rollback and last-attachment handling, we need a Stack.
