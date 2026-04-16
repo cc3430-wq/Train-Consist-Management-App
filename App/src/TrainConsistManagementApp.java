@@ -7,20 +7,18 @@ public class TrainConsistManagementApp {
         public static void main(String[] args) {
             System.out.println("=== Train Consist Management App ===");
 
-            // Initialize LinkedHashSet for train formation
-            LinkedHashSet<String> trainFormation = new LinkedHashSet<>();
+            // Initialize HashMap to store bogie-capacity mapping
+            HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-            // Attach bogies
-            trainFormation.add("Engine");
-            trainFormation.add("Sleeper");
-            trainFormation.add("Cargo");
-            trainFormation.add("Guard");
+            // Insert bogies and their capacities
+            bogieCapacity.put("Sleeper", 72);
+            bogieCapacity.put("AC Chair", 60);
+            bogieCapacity.put("First Class", 40);
 
-            // Attempt to attach a duplicate bogie (Sleeper)
-            trainFormation.add("Sleeper"); // will be ignored automatically
-
-            // Display the final train formation
-            System.out.println("\nTrain Formation (Insertion Order Preserved, No Duplicates):");
-            System.out.println(trainFormation);
+            // Display bogie capacities
+            System.out.println("\nBogie Capacities:");
+            for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+                System.out.println(entry.getKey() + " => Capacity: " + entry.getValue());
+            }
         }
     }
