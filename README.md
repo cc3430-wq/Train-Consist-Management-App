@@ -1,6 +1,14 @@
 # Train-Consist-Management-App
-Train Consist Management App is a console-based Java application that simulates how a railway system manages a train’s consist, which is a collection of bogies attached to an engine.
-The application supports:
-Passenger bogies (Sleeper, AC Chair, First Class) with seat capacity tracking
-Goods bogies (Rectangular, Cylindrical) with cargo type and safety constraints
-Tracking composition, capacity, cargo types, and safety compliance
+
+Drawback of UC1 Approach
+In UC1, the train consist is initialized but contains no bogies.
+There is no way yet to add, remove, or inspect bogies dynamically.
+To simulate a real railway system, the application must support operations such as:
+Adding passenger bogies
+Removing bogies
+
+
+Checking whether a bogie exists
+
+
+This leads us to use ArrayList operations.
