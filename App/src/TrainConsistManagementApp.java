@@ -3,41 +3,29 @@ import java.util.List;
 
 public class TrainConsistManagementApp {
 
-
-
-
-
         public static void main(String[] args) {
 
 
             System.out.println("=== Train Consist Management App ===");
 
 
-            List<String> passengerBogies = new ArrayList<>();
+            Set<String> bogieIds = new HashSet<>();
 
 
-            passengerBogies.add("Sleeper");
-            passengerBogies.add("AC Chair");
-            passengerBogies.add("First Class");
+            bogieIds.add("BG101");
+            bogieIds.add("BG102");
+            bogieIds.add("BG103");
+            bogieIds.add("BG101"); // duplicate
+            bogieIds.add("BG102"); // duplicate
 
 
-            System.out.println("\nPassenger Bogies after addition:");
-            System.out.println(passengerBogies);
+            System.out.println("\nUnique Bogie IDs in Train:");
+            System.out.println(bogieIds);
 
 
-            passengerBogies.remove("AC Chair");
-            System.out.println("\nAfter removing 'AC Chair':");
-            System.out.println(passengerBogies);
+            System.out.println("\nTotal Unique Bogies: " + bogieIds.size());
 
 
-            boolean exists = passengerBogies.contains("Sleeper");
-            System.out.println("\nDoes 'Sleeper' exist? " + exists);
-
-
-            System.out.println("\nFinal Passenger Bogie List:");
-            System.out.println(passengerBogies);
-
-
-            System.out.println("\nSystem ready for further operations.");
+            System.out.println("\nSystem ensures no duplicate bogie IDs.");
         }
     }
