@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class TrainConsistManagementApp {
+public class TrainApp {
 
     // Method to sort bogie names
     public static void sortBogieNames(String[] bogieNames) {
