@@ -1,35 +1,53 @@
 import java.util.*;
 
-public class TrainConsistManagementSystem {
+public class TrainConsistManagementApp {
 
-    // Linear Search Method
-    public static boolean linearSearch(String[] bogieIds, String key) {
+    // Binary Search Method
+    public static boolean binarySearch(String[] bogieIds, String key) {
 
-        for (int i = 0; i < bogieIds.length; i++) {
-            if (bogieIds[i].equals(key)) {
-                return true; // Match found → early termination
+        // Handle empty array
+        if (bogieIds == null || bogieIds.length == 0) {
+            return false;
+        }
+
+        // Ensure array is sorted
+        Arrays.sort(bogieIds);
+
+        int low = 0;
+        int high = bogieIds.length - 1;
+
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int comparison = bogieIds[mid].compareTo(key);
+
+            if (comparison == 0) {
+                return true; // Found
+            } else if (comparison < 0) {
+                low = mid + 1; // Search right half
+            } else {
+                high = mid - 1; // Search left half
             }
         }
 
-        return false; // No match found
+        return false; // Not found
     }
 
     public static void main(String[] args) {
 
-        // Sample bogie IDs (unsorted)
-        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+        // Example (unsorted input handled internally)
+        String[] bogieIds = {"BG309", "BG101", "BG550", "BG205", "BG412"};
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter Bogie ID to search: ");
-        String searchKey = scanner.nextLine();
+        String key = scanner.nextLine();
 
-        // Perform Linear Search
-        boolean found = linearSearch(bogieIds, searchKey);
+        boolean found = binarySearch(bogieIds, key);
 
-        // Display result
         if (found) {
-            System.out.println("Bogie ID found in the train.");
+            System.out.println("Bogie ID found.");
         } else {
             System.out.println("Bogie ID not found.");
         }
