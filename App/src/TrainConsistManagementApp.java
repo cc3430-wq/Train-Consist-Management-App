@@ -1,45 +1,59 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.*;
 
+class GoodsBogie {
+    String type;   // e.g., Cylindrical, Open, Box
+    String cargo;  // e.g., Petroleum, Coal, Grain
 
-
-
-    class Bogie {
-        String type;
-        int capacity;
-
-        public Bogie(String type, int capacity) {
-            this.type = type;
-            this.capacity = capacity;
-        }
-
-        public int getCapacity() {
-            return capacity;
-        }
-
-        @Override
-        public String toString() {
-            return type + " (" + capacity + " seats)";
-        }
+    public GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
     }
 
-    public class  TrainConsistManagementApp {
+    public String getType() {
+        return type;
+    }
 
-        public static void main(String[] args) {
+    public String getCargo() {
+        return cargo;
+    }
 
-            // Creating list of bogies
-            List<Bogie> bogies = new ArrayList<>();
+    @Override
+    public String toString() {
+        return type + " carrying " + cargo;
+    }
+}
 
-            bogies.add(new Bogie("Sleeper", 72));
-            bogies.add(new Bogie("AC Chair", 54));
-            bogies.add(new Bogie("First Class", 24));
+public class TrainApp {
 
-            // Stream pipeline: map + reduce
-            int totalSeats = bogies.stream()
-                    .map(Bogie::getCapacity)   // Extract capacity
-                    .reduce(0, Integer::sum); // Aggregate total
+    // Safety validation method
+    public static boolean isTrainSafe(List<GoodsBogie> bogies) {
 
-            // Display result
-            System.out.println("Total Seating Capacity: " + totalSeats);
+        return bogies.stream()
+                .allMatch(b ->
+                        // Rule: If Cylindrical → only Petroleum allowed
+                        !b.getType().equalsIgnoreCase("Cylindrical")
+                                || b.getCargo().equalsIgnoreCase("Petroleum")
+                );
+    }
+
+    public static void main(String[] args) {
+
+        List<GoodsBogie> bogies = new ArrayList<>();
+
+        // Sample data
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        bogies.add(new GoodsBogie("Open", "Coal"));
+        bogies.add(new GoodsBogie("Box", "Grain"));
+
+        // Validate safety
+        boolean isSafe = isTrainSafe(bogies);
+
+        // Output result
+        if (isSafe) {
+            System.out.println("Train is SAFETY COMPLIANT");
+        } else {
+            System.out.println("Train is NOT SAFETY COMPLIANT");
         }
     }
+}
