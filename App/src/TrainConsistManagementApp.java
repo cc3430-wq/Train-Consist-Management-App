@@ -24,7 +24,7 @@ class GoodsBogie {
     }
 }
 
-public class TrainApp {
+public class TrainConsistManagementApp {
 
     // Safety validation method
     public static boolean isTrainSafe(List<GoodsBogie> bogies) {
